@@ -1,6 +1,5 @@
 plugins {
-    id("com.android.application") version "8.2.0" apply false
-}
+    id("com.android.application")
     id("org.jetbrains.kotlin.android")
 }
 
@@ -10,17 +9,21 @@ android {
 
     defaultConfig {
         applicationId = "com.aurapulse.studio"
-        minSdk = 26
+        minSdk = 24
         targetSdk = 34
         versionCode = 1
-        versionName = "3.9.7"
+        versionName = "1.0"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
-            // Signed with the debug key so the release APK is also installable.
-            signingConfig = signingConfigs.getByName("debug")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
